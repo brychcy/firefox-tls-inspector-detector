@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>TLS Detector Options</title>
+    <style>
+      body { font-family: system-ui; padding: 16px; }
+      label { display: block; margin-bottom: 8px; font-weight: 600; }
+      input { width: 100%; padding: 4px 8px; margin-bottom: 12px; }
+      button { padding: 6px 12px; font-weight: 600; }
+      .status { margin-top: 8px; color: #2563eb; }
+    </style>
+  </head>
+  <body>
+    <h2>TLS Detector Options</h2>
+    <label for="keyword">Keyword to detect in certificate chain</label>
+    <input id="keyword" type="text" placeholder="e.g. Zscaler" />
+    <button id="save">Save</button>
+    <div class="status" id="status"></div>
+    <script src="options.js"></script>
+  </body>
+</html>

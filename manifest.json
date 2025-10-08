@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "TLS Inspector Detector",
+  "version": "2.0.0",
+  "description": "Detects if the current page's TLS certificate chain includes a configured keyword (e.g., Zscaler). Caches results per host automatically with popup settings button.",
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "tabs",
+    "storage",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_title": "TLS Inspector Detector",
+    "default_popup": "popup.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  }
+}
