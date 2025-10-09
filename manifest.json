@@ -16,7 +16,10 @@
   },
   "browser_action": {
     "default_title": "TLS Inspector Detector",
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icon-default.svg"
+    }
   },
   "options_ui": {
     "page": "options.html",

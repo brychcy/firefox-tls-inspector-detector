@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="grad-gray" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e5e8ea"/>
+      <stop offset="100%" stop-color="#6d7175"/>
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" fill="none"/>
+  <!-- Adjusted positioning: slight top padding, bottom aligned -->
+  <!-- Full-height body to bottom (no transparent gap) -->
+  <!-- Shackle behind body (moved down 1px) -->
+  <path fill="none" stroke="#8b9297" stroke-width="3.9" stroke-linecap="round" d="M13 20v-7.5c0-6.5 5.8-10.5 11-10.5h0c5.2 0 11 4 11 10.5V20"/>
+  <!-- Body in front -->
+  <path fill="url(#grad-gray)" stroke="#8b9297" stroke-width="2.5" d="M3 19h42v28H3z"/>
+  <!-- Keyhole upright (circle above stem) -->
+  <circle cx="24" cy="29" r="4" fill="#1f2427"/>
+  <rect x="22.4" y="31" width="3.2" height="8" rx="1.6" fill="#1f2427"/>
+</svg>

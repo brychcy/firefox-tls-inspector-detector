@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="grad-lock" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e5e8ea"/>
+      <stop offset="100%" stop-color="#6d7175"/>
+    </linearGradient>
+    <!-- Blue iris gradient -->
+    <radialGradient id="grad-iris" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="55%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </radialGradient>
+  </defs>
+  <rect width="48" height="48" fill="none"/>
+  <!-- Full-height body to bottom (no transparent gap) -->
+  <!-- Shackle behind body (moved down 1px) -->
+  <path fill="none" stroke="#8b9297" stroke-width="3.9" stroke-linecap="round" d="M13 20v-7.5c0-6.5 5.8-10.5 11-10.5h0c5.2 0 11 4 11 10.5V20"/>
+  <!-- Body in front -->
+  <path fill="url(#grad-lock)" stroke="#8b9297" stroke-width="2.5" d="M3 19h42v28H3z"/>
+  <circle cx="24" cy="29" r="4" fill="#1f2427"/>
+  <rect x="22.4" y="31" width="3.2" height="8" rx="1.6" fill="#1f2427"/>
+    <!-- Eye overlay enlarged & shifted -->
+    <!-- Enlarged & further shifted eye overlay (center moved 5px left, 3px up) -->
+    <g>
+      <!-- White sclera enlarged -->
+      <ellipse cx="22" cy="20.5" rx="22" ry="13" fill="#ffffff" stroke="#2d2d2d" stroke-width="2" transform="rotate(-11 22 20.5)"/>
+      <!-- Larger blue iris -->
+      <circle cx="22" cy="20.5" r="9.5" fill="url(#grad-iris)" stroke="#1e3a8a" stroke-width="1" transform="rotate(-11 22 20.5)"/>
+      <!-- Larger pupil -->
+      <circle cx="22" cy="20.5" r="5.2" fill="#0a0a0a" transform="rotate(-11 22 20.5)"/>
+      <!-- Highlight repositioned -->
+      <circle cx="24.9" cy="17.9" r="2.6" fill="#ffffff" transform="rotate(-11 22 20.5)"/>
+    </g>
+</svg>

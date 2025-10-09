@@ -59,16 +59,25 @@ async function analyzeSecurityInfo(si, host, url, type) {
 async function showBadgeForTab(tabId, host) {
   const info = hostCertMap.get(host);
   if (!info) {
-    await browser.browserAction.setBadgeText({ tabId, text: "?" });
-    await browser.browserAction.setBadgeBackgroundColor({ tabId, color: "#6b7280" });
+    // No cached cert info yet: show 'no cert' icon
+    try { await browser.browserAction.setIcon({ tabId, path: "icon-nocert.svg" }); } catch {}
     return;
   }
   const type = info.detected ? "warn" : (info.isSecure ? "ok" : "bad");
-  const text = type === "ok" ? "OK" : type === "warn" ? "!" : "!";
-  const color = type === "ok" ? "#22c55e" : type === "warn" ? "#d97706" : "#ef4444";
-  await browser.browserAction.setBadgeText({ tabId, text });
-  await browser.browserAction.setBadgeBackgroundColor({ tabId, color });
   await browser.browserAction.setTitle({ tabId, title: `${host}: ${type}` });
+  // Icon switching: detected => zscaler icon; ok => default lock; bad/insecure => http or nocert depending on secure flag
+  try {
+    const chainLen = info?.details?.certChain?.length || 0;
+    if (info.detected) {
+      await browser.browserAction.setIcon({ tabId, path: "icon-zscaler.svg" });
+    } else if (!info.isSecure) {
+      await browser.browserAction.setIcon({ tabId, path: "icon-http.svg" });
+    } else if (chainLen === 0) {
+      await browser.browserAction.setIcon({ tabId, path: "icon-nocert.svg" });
+    } else {
+      await browser.browserAction.setIcon({ tabId, path: "icon-default.svg" });
+    }
+  } catch {}
 }
 
 browser.webRequest.onHeadersReceived.addListener(
@@ -101,6 +110,12 @@ browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (changeInfo.status === "complete" && tab.url?.startsWith("https://")) {
     const host = new URL(tab.url).hostname;
     await showBadgeForTab(tabId, host);
+  } else if (changeInfo.status === "complete" && tab.url && tab.url.startsWith("http://")) {
+    // Plain HTTP: just set icon & title (no badge)
+    try {
+      await browser.browserAction.setTitle({ tabId, title: `Insecure (HTTP)` });
+      await browser.browserAction.setIcon({ tabId, path: "icon-http.svg" });
+    } catch {}
   }
 });
 
